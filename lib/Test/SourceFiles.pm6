@@ -56,7 +56,7 @@ This library is free software; you can redistribute it and/or modify it under th
 =end pod
 
 #! Calls use-ok $module on all pm6 source files in the libs directory. Returns a count of how many tests where run.
-sub use-libs-ok(Str :$root-path = 'lib', List :$extensions = <pm6>.List, Bool :$verbose --> Int) is export {
+sub use-libs-ok(Str :$root-path = 'lib', List :$extensions = <rakumod pm6>.List, Bool :$verbose --> Int) is export {
   my Int $test-count = 0;
   for collect-sources(:$root-path :$extensions :$verbose) {
     $test-count++;
@@ -66,7 +66,7 @@ sub use-libs-ok(Str :$root-path = 'lib', List :$extensions = <pm6>.List, Bool :$
 }
 
 #! Returns a Seq of Pairs where the key is the module syntax form and the value the files path
-sub collect-sources(Str :$root-path = 'lib', List :$extensions = <pm6>.List, Bool :$verbose --> Seq) is export {
+sub collect-sources(Str :$root-path = 'lib', List :$extensions = <rakumod pm6>.List, Bool :$verbose --> Seq) is export {
   my @path-stack = $root-path, ;
   gather {
     while @path-stack.shift -> $path {
